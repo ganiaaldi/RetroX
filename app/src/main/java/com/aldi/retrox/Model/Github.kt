@@ -14,8 +14,5 @@ open class Github {
     @Expose
     open var name: String? = null
 
-    @SerializedName("company")
-    @Expose
-    open var company: String? = null
 
 }
