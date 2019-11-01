@@ -1,5 +1,6 @@
 package com.aldi.retrox
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
@@ -9,6 +10,7 @@ import com.aldi.retrox.Interface.Service
 import com.aldi.retrox.Model.Github
 import com.bumptech.glide.Glide
 import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -50,6 +52,10 @@ class MainActivity : AppCompatActivity() {
                 }
             )
 
+        btn.setOnClickListener {
+            val intent = Intent(this@MainActivity, Rx::class.java)
+            startActivity(intent)
+        }
 
     }
 

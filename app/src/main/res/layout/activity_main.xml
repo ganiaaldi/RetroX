@@ -33,7 +33,8 @@
                                                android:layout_centerHorizontal="true"
     android:text="NEXT"
     android:textColor="#FFFF"
-    android:textSize="25sp"/>
+    android:textSize="25sp"
+    android:id="@+id/btn"/>
 
 </RelativeLayout>
 
