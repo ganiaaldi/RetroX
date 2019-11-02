@@ -9,7 +9,7 @@ object JokeApi {
     fun createService(): JokeApiService = Retrofit.Builder()
         .baseUrl("http://api.icndb.com")
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+        .addCallAdapterFactory(RxJavaCallAdapterFactory.create()) //change to RX java 2
         .build()
         .create(JokeApiService::class.java)
 }
