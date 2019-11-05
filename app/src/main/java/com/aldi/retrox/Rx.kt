@@ -53,10 +53,12 @@ class Rx : AppCompatActivity() {
                 }
             }
         })
+        viewModel.joke.observe(this, Observer {
+            tv_single_joke.text = it?.toString() ?: EMPTY_STRING
+        })
         viewModel.jokes.observe(this, Observer {
             tv_jokes.text = it?.toJokeString() ?: EMPTY_STRING
         })
-
         //Completable
 
         viewModel.installLoadingStatus.observe(this, Observer {

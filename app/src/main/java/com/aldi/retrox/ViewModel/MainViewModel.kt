@@ -54,6 +54,27 @@ class MainViewModel : ViewModel(){
             onError =  {_joke.postValue(it.message)}
         )
 
+    fun onJokerRequest() = singleRandomJoke.toObservable()
+       // .repeat(1)
+        .subscribeOn(Schedulers.io())
+        .observeOn(Schedulers.io())
+        .doOnSubscribe{
+            _jokes.postValue(emptyList())
+            _jokesLoadingStatus.postValue(LoadingStatus.LOADING)
+        }
+        .doFinally{_jokesLoadingStatus.postValue(LoadingStatus.NOT_LOADING)}
+        .subscribeBy(
+            onNext = {_jokes.postValue(_jokes.value?.plus(it.jokeText))},
+            onError = {
+                _jokes.postValue(
+                    it.message?.let{
+                        _jokes.value?.plus(it)
+                    } ?: emptyList()
+                )
+            },
+            onComplete = {}
+        )
+
     fun onJokesRequest() = singleRandomJoke.toObservable()
         .repeat(10)
         .subscribeOn(Schedulers.io())
